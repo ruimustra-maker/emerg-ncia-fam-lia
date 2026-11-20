@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+
+<html lang="pt-PT">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>App de Emergência da Família</title>
+
+<script>
+
+(função () {
+
+função unidades() {
+
+const documentStyle = document.documentElement.style;
+
+documentStyle.setProperty("--vw", innerWidth / 100 + "px");
+
+documentStyle.setProperty("--vh", innerHeight / 100 + "px");
+
+}
+
+unidades();
+
+adicionarOuvinteDeEvento("redimensionar", unidades);
+
+})();
+
+</script>
+
+<style>
+
+:raiz {
+
+--deck-dk1: #000000; /* somente modelo, nunca em um slide */
+
+--deck-lt1: #FFFFFF; /* somente modelo, nunca em um slide */
+
+--deck-dk2: #F1EFED; /* apenas modelo, nunca em um slide */
+
+--deck-lt2: #6E6159; /* somente modelo, nunca em um slide */
+
+--deck-accent1: #EB1700; /* 20x em 1 slide, como outros, nunca como texto */
+
+--deck-accent2: #D5CFC9; /* somente modelo, nunca em um slide */
+
+--deck-accent3: #000000; /* somente modelo, nunca em um slide */
+
+--deck-accent4: #A39992; /* somente modelo, nunca em um slide */
+
+--deck-accent5: #69D0FF; /* NÃO UTILIZADO neste deck */
+
+--deck-accent6: #004585; /* NÃO UTILIZADO neste deck */
+
+--deck-hlink: #000000; /* somente modelo, nunca em um slide */
+
+--deck-folhlink: #000000; /* somente modelo, nunca em um slide */
+
+--deck-text-title: #EB1700; /* a cor do TÍTULO do baralho -- use isso para o título do bloco */
+
+--deck-text-body: #000000; /* a cor do CORPO do deck -- parágrafos, rótulos, texto da tabela */
+
+--deck-text-background: #FFFFFF; /* fundo onde o texto do baralho será exibido */
+
+--deck-text-subtitle: #000000; /* a cor do SUBTEXTO do baralho -- legendas, chamadas, descrições. Use esta cor em vez de inventar uma cor cinza */
+
+--deck-font-major: "Johnson Display", sem serifa;
+
+--peso-do-convés-principal: 400;
+
+--deck-font-minor: "Johnson Text", sem serifa;
+
+--peso-do-deck-minor: 400;
+
+/* Escala de tipo -- 22 tamanhos lidos deste deck. 1pt = 1,3333px aqui.
+
+Use estes; não invente um tamanho intermediário.
+
+w = peso da evidência: tamanhos no formato do conteúdo do baralho
+
+Os layouts contam mais do que apenas os tamanhos dos slides de título e
+
+divisores. [conteúdo] marca esses. Prefira-os. */
+
+--deck-fs-110: 146.67px; /* Layout de 110pt x6 w6 */
+
+--deck-fs-80: 106.67px; /* layout de 80pt x2 w2 */
+
+--deck-fs-74: 98.67px; /* layout de 74pt x1 w1 */
+
+--deck-fs-70: 93.33px; /* Layout de 70pt x16 w18.8 [conteúdo x1] */
+
+--deck-fs-65: 86.67px; /* Layout de 65pt x2 w4.9 [conteúdo x2] */
+
+--deck-fs-54: 72.00px; /* layout de 54pt x2 w2 */
+
+--deck-fs-45: 60.00px; /* layout de 45pt x1 w1 */
+
+--deck-fs-35: 46.67px; /* 35pt master x1 w1 */
+
+--deck-fs-30: 40.00px; /* layout de 30pt x1 w1 */
+
+--deck-fs-20: 26.67px; /* layout de 20pt x12 w12 */
+
+--deck-fs-18: 24.00px; /* 18pt layout+master+slide x48 w95.3 [content x20] */
+
+--deck-fs-16: 21.33px; /* 16pt layout+master+slide x83 w85.3 [content x1] */
+
+--deck-fs-15: 20.00px; /* Layout de 15pt x365 w365 */
+
+--deck-fs-14: 18.67px; /* Layout de 14pt x125 w135.8 [conteúdo x10] */
+
+--deck-fs-13: 17.33px; /* slide de 13pt x24 w24 */
+
+--deck-fs-12: 16.00px; /* Layout de 12pt x88 w93.3 [conteúdo x4] */
+
+--deck-fs-11: 14.67px; /* layout de 11pt x3 w3 */
+
+--deck-fs-10: 13.33px; /* layout de 10pt x53 w80.7 [conteúdo x27] */
+
+--deck-fs-9: 12.00px; /* 9pt master x1 w1 */
+
+--deck-fs-8: 10.67px; /* 8pt layout+master x59 w82.7 [content x16] */
+
+--deck-fs-6: 8.00px; /* layout de 6pt x16 w16 */
+
+--deck-fs-4: 5.33px; /* layout de 4pt x30 w30 */
+
+--deck-radius: 0px; /* geometria de canto própria do deck */
+
+--deck-border-width: 1.33px; /* linha de tema nível 2, via shapes(x6) */
+
+--deck-fill-kind: solid; /* preenchimento do tema nível 1, via shapes(x6) */
+
+--deck-inset-l: 0 pol;
+
+--deck-inset-r: 0 pol;
+
+--deck-inset-t: 0 pol;
+
+--deck-inset-b: 0 pol;
+
+--deck-safe-left: 2.365vw;
+
+--deck-safe-right: 2.37vw;
+
+--deck-safe-top: 3.824vh;
+
+--deck-safe-bottom: 15.93vh;
+
+--deck-title-x: 2,365%;
+
+--deck-title-y: 3,824%;
+
+--deck-title-w: 55,06%;
+
+--deck-title-h: 6,676%;
+
+--deck-body-x: 2,374%;
+
+--deck-body-y: 4,304%;
+
+--deck-body-w: 95,26%;
+
+--deck-body-h: 79,77%;
+
+--deck-footer-x: 2,364%;
+
+--deck-footer-y: 85,56%;
+
+--deck-footer-w: 95,26%;
+
+--deck-footer-h: 10,49%;
+
+--deck-furniturebottom-x: 2,364%;
+
+--deck-furniturebottom-y: 85,56%;
+
+--deck-furniturebottom-w: 95,26%;
+
+--deck-furniturebottom-h: 10,49%;
+
+--deck-bodyprimary-x: 2,374%;
+
+--deck-bodyprimary-y: 26,57%;
+
+--deck-bodyprimary-w: 95,23%;
+
+--deck-bodyprimary-h: 57,5%;
+
+--deck-bodytext-x: 2,374%;
+
+--deck-bodytext-y: 4,304%;
+
+--deck-bodytext-w: 95,26%;
+
+--deck-bodytext-h: 79,77%;
+
+--deck-bodyclear-x: 2,374%;
+
+--deck-bodyclear-y: 26,57%;
+
+--deck-bodyclear-w: 95,23%;
+
+--deck-bodyclear-h: 57,5%;
+
+--deck-row-gutter: 9,492%;
+
+}
+
+:raiz {
+
+--vw: 1vw;
+
+--vh: 1vh;
+
+--space-xs: min(.4vw, .71vh);
+
+--space-sm: min(.7vw, 1.24vh);
+
+--space-md: min(1.2vw, 2.13vh);
+
+--space-lg: min(2vw, 3.56vh);
+
+--fs-12: min(calc(1,25 * var(--vw)), calc(2,222 * var(--vh)));
+
+--fs-14: min(calc(1,458 * var(--vw)), calc(2,593 * var(--vh)));
+
+--fs-16: min(calc(1,667 * var(--vw)), calc(2,963 * var(--vh)));
+
+--fs-18: min(calc(1,875 * var(--vw)), calc(3,333 * var(--vh)));
+
+--fs-20: min(calc(2,083 * var(--vw)), calc(3,704 * var(--vh)));
+
+--fs-30: min(calc(3,125 * var(--vw)), calc(5,556 * var(--vh)));
+
+--fs-35: min(calc(3,646 * var(--vw)), calc(6,481 * var(--vh)));
+
+--fs-70: min(calc(7,29 * var(--vw)), calc(12,96 * var(--vh)));
+
+}
+
+*, *::antes, *::depois { box-sizing: border-box; }
+
+botão, entrada, seleção, área de texto { fonte: herdar; cor: herdar; }
+
+corpo { tamanho da fonte: var(--fs-14); altura da linha: 1,3; }
+
+html, body, .viewport { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+
+corpo { família-da-fonte: var(--deck-font-minor); peso-da-fonte: var(--deck-weight-minor); cor: var(--deck-text-body); }
+
+.viewport { position: fixed; inset: 0; background: var(--deck-text-background); }
+
+.página {
+
+largura: 100%; largura mínima: 0; altura: 100%; altura mínima: 0; largura máxima: nenhuma; margem: 0;
+
+padding: var(--deck-safe-top) var(--deck-safe-right) var(--deck-safe-bottom) var(--deck-safe-left);
+
+origem da transformação: canto superior esquerdo; posição: relativa;
+
+exibição: flexível; direção flexível: coluna; espaçamento: var(--space-md);
+
+}
+
+h1, h2, h3, p { margem: 0; }
+
+.display { font-family: var(--deck-font-major); font-weight: var(--deck-weight-major); }
+
+/* cabeçalho */
+
+.top { flex: none; display: flex; justify-content: space-between; align-items: flex-end; gap: var(--space-md); }
+
+h1 { font-family: var(--deck-font-major); font-weight: var(--deck-weight-major); font-size: var(--fs-30); line-height: 1.15; color: var(--deck-text-title); padding-inline-end: .06em; }
+
+.where { tamanho da fonte: var(--fs-14); margem superior: var(--space-xs); }
+
+.review { flex: none; font-size: var(--fs-14); background: var(--deck-dk2); padding: var(--space-xs) var(--space-md); border: var(--deck-border-width) solid var(--deck-accent4); }
+
+.review b { font-weight: var(--deck-weight-minor); text-decoration: underline; text-decoration-color: var(--deck-accent1); text-decoration-thickness: .12em; text-underline-offset: .2em; }
+
+/* layout */
+
+.layout { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 7.4fr); gap: var(--space-md); }
+
+.side { min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: var(--space-md); }
+
+.tabs { display: flex; flex-direction: column; gap: var(--space-sm); flex: none; }
+
+.tab {
+
+exibição: grade; colunas-modelo-grade: auto 1fr; alinhamento-itens: centro; espaçamento-coluna: var(--space-md);
+
+alinhamento de texto: esquerda; cursor: ponteiro; largura: 100%;
+
+preenchimento: var(--space-xs) var(--space-md);
+
+fundo: var(--deck-text-background); cor: var(--deck-text-body);
+
+borda: var(--deck-border-width) solid var(--deck-accent4);
+
+}
+
+.tab:hover { background: var(--deck-dk2); }
+
+.tab[aria-selected="true"] { background: var(--deck-text-body); color: var(--deck-text-background); border-color: var(--deck-text-body); }
+
+.tab .num { font-family: var(--deck-font-major); font-size: var(--fs-20); line-height: 1.3; min-width: 1.5em; }
+
+.tab[aria-selected="true"] .num { color: var(--deck-text-background); }
+
+.tab .name { display: block; font-size: var(--fs-16); line-height: 1.3; }
+
+.tab .sub { display: block; font-size: var(--fs-12); line-height: 1.3; }
+
+.tab .bar { display: none; }
+
+.preparar {
+
+flex: 1 1 auto; background: var(--deck-dk2); padding: var(--space-sm) var(--space-md);
+
+exibição: grade; colunas-modelo-grade: automático 1fr; espaçamento: var(--space-md); alinhamento-itens: centro; alinhamento-conteúdo: centro;
+
+borda: var(--deck-border-width) solid var(--deck-accent4);
+
+}
+
+.ring { display: grid; place-items: center; width: min(5.6vw, 10vh); }
+
+.ring > * { grid-area: 1 / 1; }
+
+.ring svg { width: 100%; height: auto; transform: rotate(-90deg); }
+
+.ring .count { position: relative; z-index: 1; font-family: var(--deck-font-major); font-size: var(--fs-16); line-height: 1.3; }
+
+.ring-track { fill: none; stroke: var(--deck-accent2); stroke-width: 11; }
+
+.ring-fill { fill: none; stroke: var(--deck-accent1); stroke-width: 11; stroke-dasharray: 263.9; stroke-dashoffset: 263.9; transition: stroke-dashoffset .5s ease; }
+
+.ready h2 { font-size: var(--fs-16); line-height: 1.3; font-family: var(--deck-font-major); font-weight: var(--deck-weight-major); }
+
+.ready .msg { font-size: var(--fs-12); line-height: 1.3; min-height: 2.6em; margin-top: var(--space-xs); }
+
+.btn {
+
+cursor: ponteiro; tamanho da fonte: var(--fs-12); altura da linha: 1.3; preenchimento: var(--space-xs) var(--space-md);
+
+fundo: var(--deck-text-background); cor: var(--deck-text-body); borda: var(--deck-border-width) sólida var(--deck-text-body);
+
+}
+
+.btn:hover { background: var(--deck-text-body); color: var(--deck-text-background); }
+
+.ready .btn { margin-top: var(--space-xs); }
+
+/* estágio */
+
+.board { min-width: 0; min-height: 0; background: var(--deck-dk2); padding: var(--space-md); display: grid; border: var(--deck-border-width) solid var(--deck-accent2); }
+
+.panels { display: grid; min-width: 0; min-height: 0; }
+
+.panels > [role="tabpanel"] { grid-area: 1 / 1; visibility: hidden; min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: var(--space-md); }
+
+.panels > [role="tabpanel"].active { visibility: visible; }
+
+.panel-head { flex: none; display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-md); }
+
+.panel-head h2 { font-family: var(--deck-font-major); font-weight: var(--deck-weight-major); font-size: var(--fs-20); line-height: 1.3; }
+
+.panel-head .hint { font-size: var(--fs-12); line-height: 1.3; }
+
+.panel-head .badge { font-family: var(--deck-font-major); font-size: var(--fs-20); line-height: 1.3; background: var(--deck-text-body); color: var(--deck-text-background); padding: 0 var(--space-md); }
+
+/* painel 1 */
+
+.contact-grid { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: var(--space-md); }
+
+.sos { background: var(--deck-text-body); color: var(--deck-text-background); padding: var(--space-md); display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-md); }
+
+.sos .k { tamanho da fonte: var(--fs-12); altura da linha: 1,3; }
+
+.sos .big { font-family: var(--deck-font-major); font-size: var(--fs-70); line-height: 1.15; color: var(--deck-accent1); padding-inline-end: .06em; }
+
+.sos ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-sm); }
+
+.sos li { tamanho da fonte: var(--fs-20); altura da linha: 1.3; borda superior: var(--deck-border-width) sólida var(--deck-accent4); preenchimento superior: var(--space-sm); }
+
+.sos li pequeno { display: block; font-size: var(--fs-12); line-height: 1.3; }
+
+.meet { background: var(--deck-text-background); border: var(--deck-border-width) solid var(--deck-accent4); padding: var(--space-md); display: flex; flex-direction: column; gap: var(--space-sm); min-width: 0; min-height: 0; }
+
+.seg { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm); flex: none; }
+
+.seg button { cursor: pointer; padding: var(--space-xs) var(--space-sm); font-size: var(--fs-14); line-height: 1.3; background: var(--deck-text-background); color: var(--deck-text-body); border: var(--deck-border-width) solid var(--deck-text-body); }
+
+Botão .seg:hover { background: var(--deck-dk2); }
+
+.seg button[aria-checked="true"] { background: var(--deck-text-body); color: var(--deck-text-background); }
+
+.map { flex: 1 1 auto; min-height: 0; display: grid; place-items: center; }
+
+.map svg { largura: 100%; altura: automática; altura máxima: 100%; }
+
+.mtext { font-family: var(--deck-font-minor); font-size: 15px; }
+
+.m-black { fill: var(--deck-text-body); }
+
+.m-white { fill: var(--deck-text-background); }
+
+.mg { fill: var(--deck-accent2); }
+
+.md {preencher: var(--deck-dk2); }
+
+.marker circle { fill: var(--deck-text-background); stroke: var(--deck-text-body); stroke-width: 3; transition: fill .2s; }
+
+.marker text { font-family: var(--deck-font-major); font-size: 20px; text-anchor: middle; dominant-baseline: central; fill: var(--deck-text-body); }
+
+.marker.on circle { fill: var(--deck-accent1); stroke: var(--deck-text-body); }
+
+.marker.on text { fill: var(--deck-text-background); }
+
+.pulse { fill: none; stroke: var(--deck-accent1); stroke-width: 3; opacity: 0; }
+
+.marker.on .pulse { animation: pulse 1.8s ease-out infinite; }
+
+@keyframes pulse { 0% { opacity: .9; r: 20; } 100% { opacity: 0; r: 38; } }
+
+.descs { display: grid; flex: none; }
+
+.descs p { grid-area: 1 / 1; visibility: hidden; font-size: var(--fs-16); line-height: 1.3; }
+
+.descs p.on { visibility: inherit; }
+
+.descs b { font-weight: var(--deck-weight-minor); text-decoration: underline; text-decoration-color: var(--deck-accent1); text-decoration-thickness: .12em; text-underline-offset: .18em; }
+
+/* cartões de lista de verificação */
+
+.checks { flex: 1 1 auto; min-height: 0; display: grid; gap: var(--space-sm); grid-auto-rows: 1fr; }
+
+.checks.c2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.checks.c4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.chk {
+
+cursor: ponteiro; alinhamento-texto: esquerda; exibição: flexível; direção-flexível: coluna; justificar-conteúdo: espaço-entre; espaçamento: var(--espaço-sm);
+
+preenchimento: var(--space-md); largura mínima: 0;
+
+fundo: var(--deck-text-background); cor: var(--deck-text-body); borda: var(--deck-border-width) sólida var(--deck-accent4);
+
+transição: fundo .2s;
+
+}
+
+.chk:hover { background: var(--deck-accent2); }
+
+.chk .row { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-sm); }
+
+.chk .ico { tamanho da fonte: var(--fs-35); altura da linha: 1,3; }
+
+.chk .box { flex: none; width: 1.6em; height: 1.6em; display: grid; place-items: center; font-size: var(--fs-18); line-height: 1.15; border: var(--deck-border-width) solid var(--deck-text-body); color: var(--deck-text-background); background: var(--deck-text-background); }
+
+.chk .txt { tamanho da fonte: var(--fs-16); altura da linha: 1.3; quebra de linha: quebra de palavra; }
+
+.checks.c2 .txt { tamanho da fonte: var(--fs-18); }
+
+.chk[aria-checked="true"] { background: var(--deck-text-body); color: var(--deck-text-background); border-color: var(--deck-text-body); }
+
+.chk[aria-checked="true"]:hover { background: var(--deck-text-body); }
+
+.chk[aria-checked="true"] .box { background: var(--deck-accent1); border-color: var(--deck-accent1); }
+
+.chk[aria-checked="true"] .box::after { content: "✓"; }
+
+/* stepper */
+
+.steps { flex: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-sm); }
+
+.step-btn { cursor: pointer; display: flex; align-items: center; gap: var(--space-sm); padding: var(--space-xs) var(--space-sm); text-align: left; font-size: var(--fs-14); line-height: 1.3; background: var(--deck-text-background); color: var(--deck-text-body); border: var(--deck-border-width) solid var(--deck-accent4); }
+
+.step-btn:hover { background: var(--deck-accent2); }
+
+.step-btn .n { font-family: var(--deck-font-major); font-size: var(--fs-20); line-height: 1.3; }
+
+.step-btn[aria-current="step"] { background: var(--deck-accent1); color: var(--deck-text-background); border-color: var(--deck-accent1); }
+
+.step-btn[aria-current="step"]:hover { background: var(--deck-accent1); }
+
+.stepcard { flex: 1 1 auto; min-height: 0; display: grid; }
+
+.stepbody { grid-area: 1 / 1; visibility: hidden; background: var(--deck-text-background); border: var(--deck-border-width) solid var(--deck-accent4); padding: var(--space-lg); display: grid; grid-template-columns: auto 1fr; gap: var(--space-lg); align-items: center; }
+
+.stepbody.on { visibility: inherit; }
+
+.stepbody .bignum { font-family: var(--deck-font-major); font-size: var(--fs-70); line-height: 1.15; color: var(--deck-accent1); padding-inline-end: .06em; }
+
+.stepbody .kick { font-size: var(--fs-12); line-height: 1.3; letter-spacing: .06em; text-transform: uppercase; }
+
+.stepbody .ico { tamanho da fonte: var(--fs-35); altura da linha: 1,3; }
+
+.stepbody p.txt { tamanho da fonte: var(--fs-20); altura da linha: 1.3; margem superior: var(--space-xs); }
+
+.stepnav { flex: none; display: flex; justify-content: space-between; align-items: center; gap: var(--space-md); }
+
+.stepnav .btn {tamanho da fonte: var(--fs-14); }
+
+.stepnav .hint { font-size: var(--fs-12); line-height: 1.3; }
+
+botão:focus-visible { contorno: 3px sólido var(--deck-text-body); deslocamento-do-contorno: 2px; }
+
+.tab[aria-selected="true"]:focus-visible { outline-color: var(--deck-accent1); }
+
+.chk[aria-checked="true"]:focus-visible { outline-color: var(--deck-accent1); }
+
+/* sobreposição */
+
+.overlay { position: absolute; top: 0; left: 0; width: 0; height: 0; z-index: 1000; pointer-events: none; }
+
+.overlay > * { position: absolute; pointer-events: auto; max-width: min(28vw, ​​50vh); }
+
+.pop { background: var(--deck-text-body); color: var(--deck-text-background); padding: var(--space-md); border: var(--deck-border-width) solid var(--deck-accent1); display: flex; flex-direction: column; gap: var(--space-sm); }
+
+.pop[hidden] { display: none; }
+
+.pop h3 { font-family: var(--deck-font-major); font-weight: var(--deck-weight-major); font-size: var(--fs-20); line-height: 1.3; }
+
+.pop p { tamanho da fonte: var(--fs-14); altura da linha: 1,3; }
+
+.pop .btn { align-self: flex-start; background: var(--deck-text-background); color: var(--deck-text-body); border-color: var(--deck-text-background); }
+
+.pop .btn:focus-visible { outline-color: var(--deck-accent1); }
+
+@media (max-aspect-ratio: 4 / 3) {
+
+.layout { grid-template-columns: 1fr; }
+
+.checks.c4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+.contact-grid { grid-template-columns: 1fr; }
+
+}
+
+@media (min-aspect-ratio: 21 / 9) {
+
+.page, .chk, .board { padding-block: var(--space-sm); }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+.ring-fill, .chk { transition: none; }
+
+.marker.on .pulse { animação: nenhuma; opacidade: 0,9; }
+
+}
+
+@media (forced-colors: active) {
+
+.viewport { background: Canvas; forced-color-adjust: none; }
+
+corpo, h1, .onde, .cabeçalho-do-painel h2, .cabeçalho-do-painel .dica, .descs p, .stepbody .txt, .stepbody .kick, .pronto h2, .pronto .msg, .ring .contagem, .tab .num { cor: CanvasText; ajuste-de-cor-forçado: nenhum; }
+
+.tab, .btn, .seg button, .chk, .step-btn, .review, .ready, .board, .meet, .stepbody { background: ButtonFace; color: ButtonText; border: 1px solid ButtonText; forced-color-adjust: none; }
+
+.tab[aria-selected="true"], .seg button[aria-checked="true"], .chk[aria-checked="true"], .step-btn[aria-current="step"] { background: Highlight; color: HighlightText; border-color: HighlightText; forced-color-adjust: none; }
+
+.tab[aria-selected="true"] .num, .chk[aria-checked="true"] .box { color: HighlightText; }
+
+.chk .box { border-color: ButtonText; background: ButtonFace; color: ButtonText; }
+
+.chk[aria-checked="true"] .box { background: Highlight; border-color: HighlightText; }
+
+.sos, .panel-head .badge, .pop { background: Canvas; color: CanvasText; border: 1px solid CanvasText; forced-color-adjust: none; }
+
+.sos .big, .stepbody .bignum { color: CanvasText; }
+
+.sos li { border-top-color: CanvasText; }
+
+.ring-track { stroke: GrayText; }
+
+.ring-fill { stroke: Destaque; }
+
+.m-preto, .m-branco, .mg, .md { preenchimento: CanvasText; }
+
+.mtext { fill: CanvasText; }
+
+.marker circle { fill: Canvas; stroke: CanvasText; }
+
+.marcador texto {preenchimento: CanvasText; }
+
+.marker.on circle { fill: Highlight; stroke: HighlightText; }
+
+.marker.on text { fill: HighlightText; }
+
+botão:focus-visible { contorno: 3px sólido Destaque; }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="viewport">
+
+<main class="page">
+
+<header class="top">
+
+<div>
+
+<h1 id="appTitle">Plano de Emergência Familiar</h1>
+
+<p class="where">Local: Urbanização Cardais, Belas </p>
+
+</div>
+
+<p class="review">Revisão do plano : <b>novembro de 2026</b></p>
+
+</header>
+
+<div class="layout">
+
+<div class="side">
+
+<div class="tabs" role="tablist" aria-label="Secções do plano" aria-orientation="vertical">
+
+<button class="tab" role="tab" id="tab1" aria-controls="panel1" aria-selected="true" tabindex="0" aria-posinset="1" aria-setsize="4">
+
+<span class="num" aria-hidden="true">01</span><span><span class="name">Contatos e encontro</span><span class="sub" id="sub1">112 e ponto de encontro</span></span>
+
+</button>
+
+<button class="tab" role="tab" id="tab2" aria-controls="panel2" aria-selected="false" tabindex="-1" aria-posinset="2" aria-setsize="4">
+
+<span class="num" aria-hidden="true">02</span><span><span class="name">Em casa</span><span class="sub" id="sub2">0 de 4 feitos</span></span>
+
+</button>
+
+<button class="tab" role="tab" id="tab3" aria-controls="panel3" aria-selected="false" tabindex="-1" aria-posinset="3" aria-setsize="4">
+
+<span class="num" aria-hidden="true">03</span><span><span class="name">Kit de emergência</span><span class="sub" id="sub3">0 de 8 prontos</span></span>
+
+</button>
+
+<button class="tab" role="tab" id="tab4" aria-controls="panel4" aria-selected="false" tabindex="-1" aria-posinset="4" aria-setsize="4">
+
+<span class="num" aria-hidden="true">04</span><span><span class="name">Se houver uma emergência</span><span class="sub" id="sub4">4 passos a seguir</span></span>
+
+</button>
+
+</div>
+
+<section class="ready" id="ready" role="group" aria-labelledby="readyT">
+
+<div class="ring">
+
+<svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle class="ring-track" cx="50" cy="50" r="42"/><circle class="ring-fill" id="ringFill" cx="50" cy="50" r="42"/></svg>
+
+<span class="count" id="ringCount">0/12</span>
+
+</div>
+
+<div>
+
+<h2 id="readyT">Família formada</h2>
+
+<p class="msg" id="readyMsg" aria-live="polite">Marque o que já está feito.</p>
+
+        <button class="btn" id="resetBtn" type="button">Limpar</button>
+
+</div>
+
+</section>
+
+</div>
+
+<div class="board panels" id="panels">
+
+<!-- 1 -->
+
+<section class="active" role="tabpanel" id="panel1" aria-labelledby="tab1" tabindex="-1">
+
+<div class="panel-head"><h2>Contatos e encontros</h2><span class="hint">Escolha um ponto para ver onde ficar</span></div>
+
+      <div class="contact-grid">
+
+<div class="sos" role="group" aria-labelledby="sosT">
+
+<div>
+
+<p class="k" id="sosT">Emergência</p>
+
+<p class="big" aria-label="112">112</p>
+
+</div>
+
+<ul aria-label="Contatos da família">
+
+            <li><small>Contacto 1</small>932 790 056</li>
+
+<li><small>Contacto 2</small>918 603 412</li>
+
+</ul>
+
+</div>
+
+<div class="meet" role="group" aria-labelledby="meetT">
+
+<div class="seg" role="radiogroup" aria-label="Ponto de encontro" id="meetT">
+
+<button type="button" role="radio" aria-checked="true" data-spot="a" tabindex="0">Ponto de encontro</button>
+
+<button type="button" role="radio" aria-checked="false" data-spot="b" tabindex="-1">Ponto alternativo</button>
+
+</div>
+
+<div class="map">
+
+<svg viewBox="0 0 400 250" role="img" aria-label="Esquema da casa: o ponto A fica em frente de casa, do lado de fora do muro; o ponto B fica no jardim do lado direito da casa.">
+
+              <rect x="0" y="0" width="400" height="250" class="md"/>
+
+<rect x="0" y="196" width="400" height="54" class="mg"/>
+
+<text x="40" y="228" class="mtext m-black">Rua</text>
+
+<rect x="95" y="38" width="150" height="116" class="m-black"/>
+
+<polygon points="85,40 170,8 255,40" class="m-black"/>
+
+<text x="170" y="104" text-anchor="middle" class="mtext m-white">Casa</text>
+
+<rect x="262" y="52" width="122" height="102" class="mg"/>
+
+<text x="323" y="146" text-anchor="middle" class="mtext m-black">Jardim</text>
+
+<line x1="16" y1="176" x2="384" y2="176" stroke="var(--deck-text-body)" stroke-width="5" stroke-dasharray="14 8"/>
+
+<text x="40" y="168" class="mtext m-black">Muro</text>
+
+<g class="marker on" id="markA"><circle class="pulse" cx="170" cy="216" r="20"/><circle cx="170" cy="216" r="19"/><text x="170" y="217">A</text></g>
+
+<g class="marker" id="markB"><circle class="pulse" cx="323" cy="104" r="20"/><circle cx="323" cy="104" r="19"/><text x="323" y="105">B</text></g>
+
+</svg>
+
+</div>
+
+<div class="descs" aria-live="polite">
+
+<p class="on" id="descA"><b>Ponto de encontro:</b> em frente de casa, do lado de fora do muro.</p>
+
+<p id="descB"><b>Ponto alternativo:</b> No jardim do lado direito da casa.</p>
+
+          </div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- 2 -->
+
+<section role="tabpanel" id="panel2" aria-labelledby="tab2" tabindex="-1">
+
+<div class="panel-head"><h2>Em casa</h2><span class="hint">Toque para marcar o que já está feito</span><span class="badge" id="badge2">0/4</span></div>
+
+<div class="checks c2" data-group="home" role="group" aria-label="Verificações em casa">
+
+<button type="button" class="chk" role="checkbox" aria-checked="false"><span class="row"><span class="ico" aria-hidden="true"> 🔌 </span><span class="box" aria-hidden="true"></span></span><span class="txt">Saber onde desligar água, gás e eletricidade.</span></button>
+
+<button type="button" class="chk" role="checkbox" aria-checked="false"><span class="row"><span class="ico" aria-hidden="true"> 🚪 </span><span class="box" aria-hidden="true"></span></span><span class="txt">Manter as saídas desimpedidas.</span></button>
+
+<button type="button" class="chk" role="checkbox" aria-checked="false"><span class="row"><span class="ico" aria-hidden="true"> 🛡️ </span><span class="box" aria-hidden="true"></span></span><span class="txt">Identificar uma zona segura dentro de casa.</span></button>
+
+<button type="button" class="chk" role="checkbox" aria-checked="false"><span class="row"><span class="ico" aria-hidden="true"> 🧯 </span><span class="box" aria-hidden="true"></span></span><span class="txt">Ter uma lanterna e extintor.</span></button>
+
+</div>
+
+</section>
+
+<!-- 3 -->
+
+<section role="tabpanel" id="panel3" aria-labelledby="tab3" tabindex="-1">
+
+<div class="panel-head"><h2>Kit de emergência</h2><span class="hint">Toque para marcar o que já está no kit</span><span class="badge" id="badge3">0/8</span></div>
+
+<div class="checks c4" data-group="kit" role="group" aria-label="Itens do kit de emergência">
+
+<button type="button" class="chk" role="checkbox" aria-checked="false"><span class="row"><span class="ico" aria-hidden="true"> 💧 </span><span class="box" aria-hidden="true"></span></span><span class="txt">Água</span></button>
+
+<button type="button" class="chk" role="checkbox" aria-checked="false"><span class="row"><span class="ico" aria-hidden="true"> 🥫 </span><span class="box" aria-hidden="true"></span></span><span class="txt">Alimentos não perecíveis</span></button>
+
+<button type="button" class="chk" role="checkbox" aria-checked="false"><span class="row"><span class="ico" aria-hidden="true"> 💊 </span><span class="box" aria-hidden="true"></span></span><span class="txt">Medicação essencial</span></button>
+
+<button type="button" class="chk" role="checkbox" aria-checked="false"><span class="row"><span class="ico" aria-hidden="true"> 🔦 </span><span class="box" aria-hidden="true"></span></span><span class="txt">Lanterna e pilhas</span></button>
+
+<button type="button" class="chk" role="checkbox" aria-checked="false"><span class="row"><span class="ico" aria-hidden="true"> 🔋 </span><span class="box" aria-hidden="true"></span></span><span class="txt">Bateria externa para rolê</span></button>
+
+<button type="button" class="chk" role="checkbox" aria-checked="false"><span class="row"><span class="ico" aria-hidden="true"> 📻 </span><span class="box" aria-hidden="true"></span></span><span class="txt">Rádio</span></button>
+
+<button type="button" class="chk" role="checkbox" aria-checked="false"><span class="row"><span class="ico" aria-hidden="true"> 🩹 </span><span class="box" aria-hidden="true"></span></span><span class="txt">Primeiros socorros</span></button>
+
+<button type="button" class="chk" role="checkbox" aria-checked="false"><span class="row"><span class="ico" aria-hidden="true"> 📄 </span><span class="box" aria-hidden="true"></span></span><span class="txt">Cópias de documentos e contatos importantes</span></button>
+
+</div>
+
+</section>
+
+<!-- 4 -->
+
+<section role="tabpanel" id="panel4" aria-labelledby="tab4" tabindex="-1">
+
+<div class="panel-head"><h2>Se houver uma emergência</h2><span class="hint">Passe a passo, um de cada vez</span></div>
+
+<div class="steps" id="steps" role="group" aria-label="Passos">
+
+<button type="button" class="step-btn" aria-current="step" aria-posinset="1" aria-setsize="4"><span class="n" aria-hidden="true">1</span>Calma</button>
+
+<button type="button" class="step-btn" aria-posinset="2" aria-setsize="4"><span class="n" aria-hidden="true">2</span>Saída</button>
+
+<button type="button" class="step-btn" aria-posinset="3" aria-setsize="4"><span class="n" aria-hidden="true">3</span>Recontrair</button>
+
+<button type="button" class="step-btn" aria-posinset="4" aria-setsize="4"><span class="n" aria-hidden="true">4</span>Sismo</button>
+
+</div>
+
+<div class="stepcard" id="stepcard" aria-live="polite">
+
+<div class="stepbody on"><span class="bignum" aria-hidden="true">1</span><div><p class="kick"><span class="ico" aria-hidden="true"> 🧘 </span> Passo 1 de 4</p><p class="txt">Manter a calma e seguir as instruções das autoridades.</p></div></div>
+
+<div class="stepbody"><span class="bignum" aria-hidden="true">2</span><div><p class="kick"><span class="ico" aria-hidden="true"> 🏃 </span> Passo 2 de 4</p><p class="txt">Se for necessário sair, usar as escadas e dirigir-se ao ponto de encontro.</p></div></div>
+
+<div class="stepbody"><span class="bignum" aria-hidden="true">3</span><div><p class="kick"><span class="ico" aria-hidden="true"> 📞 </span> Passo 3 de 4</p><p class="txt">Se a família estiver separada, use os contatos definidos e encontre-se no ponto combinado quando for seguro.</p></div></div>
+
+<div class="stepbody"><span class="bignum" aria-hidden="true">4</span><div><p class="kick"><span class="ico" aria-hidden="true"> 🛗 </span> Passo 4 de 4</p><p class="txt">Em caso de sismo, não use elevadores.</p></div></div>
+
+</div>
+
+<div class="stepnav">
+
+<button type="button" class="btn" id="prevStep">← Anterior</button>
+
+<span class="hint" id="stepHint">Passo 1 de 4</span>
+
+<button type="button" class="btn" id="nextStep">Seguinte →</button>
+
+</div>
+
+</section>
+
+</div>
+
+</div>
+
+<div class="overlay">
+
+<div class="pop" id="pop" role="status" hidden>
+
+<h3>Família preparada!</h3>
+
+<p>Casa e kit completo. Revejam o plano em Novembro de 2026.</p>
+
+<button type="button " class="btn" id="popClose">Fechar</button>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+<script>
+
+const viewport = document.querySelector(".viewport");
+
+const page = document.querySelector(".page");
+
+função alturaConteúdo() {
+
+const pageTop = page.getBoundingClientRect().top;
+
+seja bottom = pageTop + page.scrollHeight;
+
+página.querySelectorAll("*").forEach(elemento => {
+
+if (element.closest(".overlay")) { return; }
+
+fundo = Math.max(fundo, elemento.getBoundingClientRect().fundo);
+
+});
+
+retornar inferior - topoDaPágina;
+
+}
+
+função fitPage() {
+
+const viewportWidth = viewport.clientWidth;
+
+const viewportHeight = viewport.clientHeight;
+
+page.style.transform = "nenhum";
+
+page.style.width = `${viewportWidth}px`;
+
+if (contentHeight() <= viewportHeight) { page.style.width = "100%"; return; }
+
+seja baixo = 0,2;
+
+seja alto = 1;
+
+para (seja i = 0; i < 12; i++) {
+
+const escala = (baixo + alto) / 2;
+
+page.style.width = `${viewportWidth / scale}px`;
+
+if (contentHeight() * scale <= viewportHeight) { low = scale; } else { high = scale; }
+
+}
+
+page.style.width = `${viewportWidth / low}px`;
+
+page.style.transform = `scale(${low})`;
+
+}
+
+// var, não let: uma chamada scheduleFit() executada antes desta linha não deve lançar uma exceção.
+
+var fitFrame;
+
+função scheduleFit() {
+
+cancelarQuadroAnimação(quadroAjustado);
+
+fitFrame = requestAnimationFrame(fitPage);
+
+}
+
+novo ResizeObserver(scheduleFit).observe(viewport);
+
+janela.adicionarOuvinteDeEventos("carregar", agendarAjuste);
+
+janela.adicionarOuvinteDeEventos("redimensionar", agendarAjuste);
+
+document.fonts?.ready.then(scheduleFit);
+
+</script>
+
+<script>
+
+função colocarPopover(âncora, pop, gap = 8) {
+
+const overlay = document.querySelector(".overlay");
+
+if (pop.parentElement !== overlay) overlay.appendChild(pop);
+
+pop.hidden = falso;
+
+const scale = page.getBoundingClientRect().width / page.offsetWidth || 1;
+
+const margin = 8, vw = viewport.clientWidth, vh = viewport.clientHeight;
+
+const a = anchor.getBoundingClientRect(), p = page.getBoundingClientRect();
+
+const w = pop.offsetWidth * scale, h = pop.offsetHeight * scale;
+
+seja top = a.top - h - gap;
+
+se (topo < margem) topo = a.inferior + espaço;
+
+topo = Math.max(margem, Math.min(topo, vh - margem - h));
+
+seja esquerda = a.esquerda + a.largura / 2 - w / 2;
+
+esquerda = Math.max(margem, Math.min(esquerda, vw - margem - w));
+
+pop.style.left = `${(left - p.left) / scale}px`;
+
+pop.style.top = `${(top - p.top) / scale}px`;
+
+}
+
+const tabs = Array.from(document.querySelectorAll(".tab"));
+
+const panelsList = Array.from(document.querySelectorAll("#panels > [role='tabpanel']"));
+
+função selecionarAba(índice, foco) {
+
+tabs.forEach((tab, i) => {
+
+const on = i === índice;
+
+tab.setAttribute("aria-selected", on ? "true" : "false");
+
+tab.tabIndex = ligado ? 0 : -1;
+
+panelsList[i].classList.toggle("ativo", on);
+
+});
+
+se (foco) tabs[índice].foco();
+
+agendarAjuste();
+
+}
+
+tabs.forEach((tab, i) => {
+
+tab.addEventListener("click", () => selectTab(i, false));
+
+tab.addEventListener("keydown", event => {
+
+seja next = -1;
+
+se (evento.key === "SetaParaBaixo" || evento.key === "SetaParaDireita") próximo = (i + 1) % tabulações.length;
+
+se (event.key === "ArrowUp" || event.key === "ArrowLeft") próximo = (i + tabs.length - 1) % tabs.length;
+
+se (evento.key === "Home") próximo = 0;
+
+se (evento.key === "Fim") próximo = tabulações.length - 1;
+
+se (próximo >= 0) { evento.prevenirPadrão(); selecionarAba(próximo, verdadeiro); }
+
+});
+
+});
+
+/* ponto de encontro */
+
+const spotButtons = Array.from(document.querySelectorAll(".seg button"));
+
+função selecionarPonto(chave, foco) {
+
+spotButtons.forEach(button => {
+
+const on = button.dataset.spot === key;
+
+botão.setAttribute("aria-checked", on ? "true" : "false");
+
+button.tabIndex = ligado ? 0 : -1;
+
+se (ligado && em foco) botão.focalizar();
+
+});
+
+document.getElementById("markA").classList.toggle("on", key === "a");
+
+document.getElementById("markB").classList.toggle("on", key === "b");
+
+document.getElementById("descA").classList.toggle("on", key === "a");
+
+document.getElementById("descB").classList.toggle("on", key === "b");
+
+}
+
+spotButtons.forEach(button => {
+
+botão.addEventListener("click", () => selectSpot(button.dataset.spot, false));
+
+botão.adicionarOuvinteDeEvento("keydown", evento => {
+
+if (["ArrowRight", "ArrowDown", "ArrowLeft", "ArrowUp"].includes(event.key)) {
+
+evento.prevenirPadrão();
+
+selectSpot(button.dataset.spot === "a" ? "b" : "a", true);
+
+}
+
+});
+
+});
+
+/* listas de verificação e prontidão */
+
+const checkboxes = Array.from(document.querySelectorAll(".chk"));
+
+const ringFill = document.getElementById("ringFill");
+
+const pop = document.getElementById("pop");
+
+seja "celebrado" = falso;
+
+função groupCount(nome) {
+
+const items = Array.from(document.querySelectorAll(`[data-group='${name}'] .chk`));
+
+return { done: items.filter(item => item.getAttribute("aria-checked") === "true").length, total: items.length };
+
+}
+
+função atualizarProgresso() {
+
+const home = groupCount("home");
+
+const kit = grupoCount("kit");
+
+const feito = home.feito + kit.feito;
+
+const total = home.total + kit.total;
+
+document.getElementById("sub2").textContent = `${home.done} de ${home.total} feitos`;
+
+document.getElementById("sub3").textContent = `${kit.done} de ${kit.total} pronto`;
+
+document.getElementById("badge2").textContent = `${home.done}/${home.total}`;
+
+document.getElementById("badge3").textContent = `${kit.done}/${kit.total}`;
+
+document.getElementById("ringCount").textContent = `${done}/${total}`;
+
+ringFill.style.strokeDashoffset = String(263.9 * (1 - feito / total));
+
+const msg = document.getElementById("readyMsg");
+
+if (done === 0) msg.textContent = "Marque o que já está feito.";
+
+else if (done === total) msg.textContent = "Tudo pronto. Boa preparação!";
+
+else msg.textContent = `Faltam ${total - concluído} itens.`;
+
+document.getElementById("readyT").textContent = `Família formada: ${done} de ${total}`;
+
+if (done === total && !celebrated) { celebrate = true; placePopover(document.getElementById("ready"), pop); }
+
+se (feito < total) { celebrado = falso; pop.oculto = verdadeiro; }
+
+}
+
+checkboxes.forEach(box => {
+
+box.addEventListener("click", () => {
+
+box.setAttribute("aria-checked", box.getAttribute("aria-checked") === "true" ? "false" : "true");
+
+atualizarProgresso();
+
+});
+
+});
+
+document.getElementById("resetBtn").addEventListener("click", () => {
+
+checkboxes.forEach(box => box.setAttribute("aria-checked", "false"));
+
+atualizarProgresso();
+
+});
+
+document.getElementById("popClose").addEventListener("click", () => { pop.hidden = true; document.getElementById("resetBtn").focus(); });
+
+/* stepper */
+
+const stepButtons = Array.from(document.querySelectorAll(".step-btn"));
+
+const stepBodies = Array.from(document.querySelectorAll(".stepbody"));
+
+seja stepIndex = 0;
+
+função mostrarPasso(índice) {
+
+stepIndex = (index + stepBodies.length) % stepBodies.length;
+
+stepButtons.forEach((button, i) => {
+
+if (i === stepIndex) button.setAttribute("aria-current", "step"); else button.removeAttribute("aria-current");
+
+});
+
+stepBodies.forEach((body, i) => body.classList.toggle("on", i === stepIndex));
+
+document.getElementById("stepHint").textContent = `Passo ${stepIndex + 1} de ${stepBodies.length}`;
+
+}
+
+stepButtons.forEach((button, i) => button.addEventListener("click", () => showStep(i)));
+
+document.getElementById("prevStep").addEventListener("click", () => showStep(stepIndex - 1));
+
+document.getElementById("nextStep").addEventListener("click", () => showStep(stepIndex + 1));
+
+atualizarProgresso();
+
+agendarAjuste();
+
+</script>
+
+</body>
+
+</html>
